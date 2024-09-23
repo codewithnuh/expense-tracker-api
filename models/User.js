@@ -26,9 +26,9 @@ UserSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
-UserSchema.methods.createJWT = () => {
+UserSchema.methods.createJWT = function () {
   return jwt.sign(
-    { userID: this.id, name: this.name },
+    { userId: this.id, name: this.name },
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.JWT_LIFETIME,

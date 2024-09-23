@@ -2,11 +2,6 @@ const mongoose = require("mongoose");
 
 const ExpenseSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
     category: {
       type: String,
       enum: [
@@ -31,6 +26,11 @@ const ExpenseSchema = new mongoose.Schema(
     date: {
       type: Date,
       default: Date.now,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
   },
   { timestamps: true }
